@@ -1,0 +1,206 @@
+{
+  "clients": [
+    {
+      "id": 0,
+      "name": "Maya Volkenbord"
+    },
+    {
+      "id": 1,
+      "name": "John Achterburg"
+    }
+  ],
+  "psychologists": [
+    {
+      "id": 0,
+      "name": "Henk Snell"
+    },
+    {
+      "id": 1,
+      "name": "Jason Yellow"
+    }
+  ],
+  "timeslots": [
+    {
+      "id": 0,
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T09:00:00.0000000Z",
+      "endDateTime": "2021-04-11T09:30:00.0000000Z"
+    },
+    {
+      "id": 1,
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T09:30:00.0000000Z",
+      "endDateTime": "2021-04-11T10:00:00.0000000Z"
+    },
+    {
+      "id": 2,
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T10:30:00.0000000Z",
+      "endDateTime": "2021-04-11T11:00:00.0000000Z"
+    },
+    {
+      "id": 3,
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T11:00:00.0000000Z",
+      "endDateTime": "2021-04-11T11:30:00.0000000Z"
+    },
+    {
+      "id": 4,
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T11:30:00.0000000Z",
+      "endDateTime": "2021-04-11T12:00:00.0000000Z"
+    },
+    {
+      "id": 5,
+      "psychologistId": 1,
+      "clientId": 0,
+      "startDateTime": "2021-04-11T12:00:00.0000000Z",
+      "endDateTime": "2021-04-11T12:30:00.0000000Z"
+    },
+    {
+      "id": 6,
+      "psychologistId": 1,
+      "clientId": 1,
+      "startDateTime": "2021-04-11T12:30:00.0000000Z",
+      "endDateTime": "2021-04-11T13:00:00.0000000Z"
+    },
+    {
+      "id": 7,
+      "psychologistId": 0,
+      "clientId": "",
+      "startDateTime": "2021-04-11T09:00:00.0000000Z",
+      "endDateTime": "2021-04-11T09:30:00.0000000Z"
+    },
+    {
+      "id": 8,
+      "psychologistId": 0,
+      "clientId": 0,
+      "startDateTime": "2021-04-11T09:00:00.0000000Z",
+      "endDateTime": "2021-04-11T09:30:00.0000000Z"
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T09:00:00.0000000Z",
+      "endDateTime": "2021-04-11T09:30:00.0000000Z",
+      "id": 9
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-11T09:00:00.0000000Z",
+      "endDateTime": "2021-04-11T09:30:00.0000000Z",
+      "id": 10
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-13T09:00:00.0000000Z",
+      "endDateTime": "2021-04-13T09:30:00.0000000Z",
+      "id": 11
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-13T09:00:00.0000000Z",
+      "endDateTime": "2021-04-13T09:30:00.0000000Z",
+      "id": 12
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-13T09:00:00.0000000Z",
+      "endDateTime": "2021-04-13T09:30:00.0000000Z",
+      "id": 13
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-13T09:00:00.0000000Z",
+      "endDateTime": "2021-04-13T09:30:00.0000000Z",
+      "id": 14
+    },
+    {
+      "psychologistId": 1,
+      "clientId": "",
+      "startDateTime": "2021-04-13T09:00:00.0000000Z",
+      "endDateTime": "2021-04-13T09:30:00.0000000Z",
+      "id": 15
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "bla",
+      "endDateTime": "bla",
+      "id": 16
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sss",
+      "endDateTime": "sss",
+      "id": 17
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sssssss444",
+      "endDateTime": "wwww",
+      "id": 18
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "ss",
+      "endDateTime": "sss",
+      "id": 19
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sss",
+      "endDateTime": "ssss",
+      "id": 20
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sss",
+      "endDateTime": "ssss",
+      "id": 21
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sss",
+      "endDateTime": "ssss",
+      "id": 22
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "777",
+      "endDateTime": "7777",
+      "id": 23
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "ssss",
+      "endDateTime": "sssss",
+      "id": 24
+    },
+    {
+      "psychologistId": "1",
+      "clientId": "",
+      "startDateTime": "sssss",
+      "endDateTime": "7777",
+      "id": 25
+    }
+  ]
+}
