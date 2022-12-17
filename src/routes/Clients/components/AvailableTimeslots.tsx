@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useRevalidator } from 'react-router-dom';
 import { bookTimeslot, getTimeslots } from '../../../shared/api';
 import { Timeslot } from '../../../shared/types';
+import useFetchPerson from '../../../shared/useFetchPerson';
 import {
   findFreeTimeslotsOnDate,
   getTimeslotTime,
@@ -27,16 +28,7 @@ const AvailableTimeslots = ({
   date: Moment | null;
   clientId: Client['id'];
 }) => {
-  const availableTimeslots = useAvailableTimeslots();
-
-  useEffect(() => {
-    if (date) {
-      getTimeslots().then((timeslots: Timeslot[]) => {
-        const filteredOnDate = findFreeTimeslotsOnDate(timeslots, date);
-        availableTimeslots.setTimeslots(filteredOnDate);
-      });
-    }
-  }, [date]);
+  const availableTimeslots = useAvailableTimeslots(date);
 
   if (!availableTimeslots.timeslots.length)
     return <Alert color="info">No available timeslots for this day</Alert>;
@@ -68,13 +60,14 @@ const AvailableTimeslots = ({
 
 export default AvailableTimeslots;
 
-const useAvailableTimeslots = () => {
+const useAvailableTimeslots = (date: Moment | null) => {
   const revalidator = useRevalidator();
   const [timeslots, setTimeslots] = useState<Timeslot[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedTimeslot, setSelectedTimeslot] = useState<
     Timeslot | undefined
   >();
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   const handleBooking = (id: Timeslot['id'], clientId: Client['id']) => {
     bookTimeslot(id, clientId)
@@ -84,16 +77,26 @@ const useAvailableTimeslots = () => {
         const selectedTimeslot: Timeslot | undefined = timeslots.find(
           (timeslot: Timeslot) => timeslot.id === id
         );
-
-        if (selectedTimeslot) {
-          setSelectedTimeslot(selectedTimeslot);
-          setIsDialogOpen(true);
-        } else {
+        if (!selectedTimeslot)
           console.error('Could not find timeslot with id: ', id);
-        }
+
+        setIsConfirmed(true);
+        setSelectedTimeslot(selectedTimeslot);
+        setIsDialogOpen(true);
       })
       .catch((e) => new Error('could not book'));
   };
+
+  useEffect(() => {
+    if (date) {
+      getTimeslots().then((timeslots: Timeslot[]) => {
+        const filteredOnDate = findFreeTimeslotsOnDate(timeslots, date);
+        setTimeslots(filteredOnDate);
+      });
+    }
+
+    setIsConfirmed(false);
+  }, [date, isConfirmed]);
 
   return {
     timeslots,
@@ -102,6 +105,8 @@ const useAvailableTimeslots = () => {
     setIsDialogOpen,
     selectedTimeslot,
     handleBooking,
+    isConfirmed,
+    setIsConfirmed,
   };
 };
 
@@ -113,24 +118,31 @@ const ConfirmationDialog = ({
   timeslot: Timeslot | undefined;
   isOpen: boolean;
   onClose: () => void;
-}) => (
-  <Dialog open={isOpen} onClose={onClose}>
-    <>
-      <DialogTitle>Booking Confirmed</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          <Typography>{`Psychologist: ${timeslot?.psychologistId}`}</Typography>
-          <Typography>{`Time: ${moment(timeslot?.startDateTime).format(
-            'HH:MM'
-          )}`}</Typography>
-          <Typography>{`Date: ${moment(timeslot?.startDateTime).format(
-            'MMMM Do YYYY HH:mm'
-          )}`}</Typography>
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Close</Button>
-      </DialogActions>
-    </>
-  </Dialog>
-);
+}) => {
+  const psychologist = useFetchPerson(
+    '/psychologists',
+    timeslot?.psychologistId
+  );
+
+  return (
+    <Dialog open={isOpen} onClose={onClose}>
+      <>
+        <DialogTitle>Booking Confirmed</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <Typography>{`Psychologist: ${psychologist?.name}`}</Typography>
+            <Typography>{`Time: ${moment(timeslot?.startDateTime).format(
+              'HH:MM'
+            )}`}</Typography>
+            <Typography>{`Date: ${moment(timeslot?.startDateTime).format(
+              'MMMM Do YYYY HH:mm'
+            )}`}</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Close</Button>
+        </DialogActions>
+      </>
+    </Dialog>
+  );
+};

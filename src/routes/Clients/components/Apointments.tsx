@@ -1,11 +1,14 @@
 import { List, ListItemButton, ListItemText, Typography } from '@mui/material';
-
 import { Timeslot } from '../../../shared/types';
 import useFetchPerson from '../../../shared/useFetchPerson';
 import { getTimeslotString } from '../../../shared/utils';
 
-const Apointment = ({ startDateTime, endDateTime, clientId }: Timeslot) => {
-  const client = useFetchPerson('/clients', clientId);
+const Apointment = ({
+  startDateTime,
+  endDateTime,
+  clientId: psychologistId,
+}: Timeslot) => {
+  const psychologist = useFetchPerson('/psychologists', psychologistId);
 
   return (
     <ListItemButton>
@@ -13,7 +16,7 @@ const Apointment = ({ startDateTime, endDateTime, clientId }: Timeslot) => {
         primary={`${getTimeslotString(
           startDateTime,
           endDateTime
-        )} with client ${client?.name}`}
+        )} with psychologist ${psychologist?.name}`}
       />
     </ListItemButton>
   );

@@ -7,19 +7,17 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Panel from '../../shared/components/Panel';
 import { Timeslot } from '../../shared/types';
+import Appointments from './components/Apointments';
 import AvailableTimeslots from './components/AvailableTimeslots';
-
-type Timeslots = {
-  timeslots: Timeslot[];
-};
 
 export type Client = {
   id: number;
   name: string;
+  timeslots: Timeslot[];
 };
 
 const Client = () => {
-  const { name, id } = useLoaderData() as Client;
+  const { name, id, timeslots } = useLoaderData() as Client;
   const [date, setDate] = useState<Moment | null>(moment());
 
   return (
@@ -49,7 +47,9 @@ const Client = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Panel title="Upcoming Appointments">Hello</Panel>
+          <Panel title="Upcoming Appointments">
+            <Appointments timeslots={timeslots} />
+          </Panel>
         </Grid>
       </Grid>
     </Box>
